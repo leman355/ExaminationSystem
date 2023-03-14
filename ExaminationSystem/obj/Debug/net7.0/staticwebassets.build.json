@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "Aoi6UVussq3XVICMJLXhrYWG4H7BZBcZIKZR/lMYyXM=",
+  "Hash": "r9SEqhM/yUkSS9jCeChOavqpuu0lSLJRXfa6zd+OuMM=",
   "Source": "ExaminationSystem",
   "BasePath": "_content/ExaminationSystem",
   "Mode": "Default",
@@ -34151,6 +34151,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\assets\\webfonts\\fa-solid-900.woff2"
+    },
+    {
+      "Identity": "C:\\Users\\user\\source\\repos\\ExaminationSystem\\ExaminationSystem\\wwwroot\\uploads\\2d0bdb2b-5007-423b-9872-a43a6f33fd812. Хаски.jpg",
+      "SourceId": "ExaminationSystem",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\user\\source\\repos\\ExaminationSystem\\ExaminationSystem\\wwwroot\\",
+      "BasePath": "_content/ExaminationSystem",
+      "RelativePath": "uploads/2d0bdb2b-5007-423b-9872-a43a6f33fd812. Хаски.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\2d0bdb2b-5007-423b-9872-a43a6f33fd812. Хаски.jpg"
     }
   ]
 }

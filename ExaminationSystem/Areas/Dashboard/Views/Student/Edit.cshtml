@@ -1,0 +1,19 @@
+﻿@model Students
+
+
+<form method="post" enctype="multipart/form-data" class="col-6 m-auto my-3">
+    <input type="text" value="@Model.Name" class="form-control mb-4" name="Name" placeholder="Student name" />
+    <input type="text" value="@Model.UserName" class="form-control mb-4" name="UserName" placeholder="UserName" />
+    <input type="password" value="@Model.Password" class="form-control mb-4" name="Password" placeholder="Password" />
+    <input type="text" value="@Model.Contact" class="form-control mb-4" name="Contact" placeholder="Contact" />
+    <input type="hidden" class="form-control mb-4" name="OldPhoto" placeholder="Picture" />
+    <img src="@Model.Picture" width="500" height="250" class="mb-2" />
+    <input type="file" class="form-control mb-4" name="NewPhoto" placeholder="Picture" />
+    <select name="groupId" class="form-control mb-4">
+            @foreach (var group in ViewData["Groups"] as IEnumerable<Groups>)
+        {
+            <option @(group.Id== Model.GroupId ? "selected" :null) value="@group.Id">@group.Name</option>
+        }
+    </select>
+    <input type="submit" class="btn btn-outline-primary mt-2" value="update" />
+</form>

@@ -7789,6 +7789,10 @@
       "PackagePath": "staticwebassets\\assets\\webfonts\\fa-solid-900.woff2"
     },
     {
+      "Id": "C:\\Users\\user\\source\\repos\\ExaminationSystem\\ExaminationSystem\\wwwroot\\uploads\\2d0bdb2b-5007-423b-9872-a43a6f33fd812. Хаски.jpg",
+      "PackagePath": "staticwebassets\\uploads\\2d0bdb2b-5007-423b-9872-a43a6f33fd812. Хаски.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.ExaminationSystem.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
