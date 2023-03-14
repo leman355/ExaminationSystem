@@ -10,7 +10,6 @@
     <Folder Include="Areas\Dashboard\Data\" />
     <Folder Include="Areas\Dashboard\Models\" />
     <Folder Include="wwwroot\uploads\" />
-    <Folder Include="Migrations\" />
   </ItemGroup>
 
   <ItemGroup>

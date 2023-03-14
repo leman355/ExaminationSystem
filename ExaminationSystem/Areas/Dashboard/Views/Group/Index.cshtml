@@ -1,4 +1,4 @@
-﻿@model IEnumerable<GroupVM>
+﻿@model IEnumerable<Groups>
 <a href="/dashboard/group/create" class="btn btn-outline-primary mb-3">Create</a>
 
 
@@ -14,7 +14,6 @@
                     <tr>
                         <th>Id</th>
                         <th>GroupName</th>
-                        <th>TotalCount</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -22,7 +21,6 @@
                     <tr>
                         <th>Id</th>
                         <th>GroupName</th>
-                        <th>TotalCount</th>
                         <th></th>
                     </tr>
                 </tfoot>
@@ -32,7 +30,6 @@
                         <tr>
                             <td>@group.Id</td>
                             <td>@group.Name</td>
-                            <td>@group.TotalCount</td>
 
                             <td class="col-2">
                                 <a href="/dashboard/group/edit/@group.Id" class="btn btn-outline-warning">Edit</a>
