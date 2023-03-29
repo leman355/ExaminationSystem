@@ -1,0 +1,17 @@
+﻿<form method="post" enctype="multipart/form-data" class="col-6 m-auto my-3">
+    <input type="text" class="form-control mb-4" name="Name" placeholder="Student name" />
+    <input type="text" class="form-control mb-4" name="Surname" placeholder="Surname" />
+    <input type="text" class="form-control mb-4" name="Contact" placeholder="Contact" />
+    <input type="file" class="form-control mb-4" name="NewPhoto" placeholder="Picture" />
+    <span>
+        <label style="user-select:none" for="deleted">Is Deleted</label>
+        <input id="deleted" type="checkbox" name="Is Deleted" />
+    </span>
+   <select name="userId" class="form-control mb-4">
+        @foreach (var usr in ViewData["Users"] as IEnumerable<User>)
+        {
+            <option value="@usr.Id">@usr.Name</option>
+        }
+    </select>
+    <input type="submit" class="btn btn-outline-success mt-2" value="create" />
+</form>

@@ -1,0 +1,62 @@
+﻿@model IEnumerable<Student>
+<a href="/dashboard/student/create" class="btn btn-outline-primary mb-3">Create</a>
+
+
+<!-- DataTales Example -->
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Contact </th>
+                        <th>Picture</th>
+                        <th>StudentCreatedDate</th>
+                        <th>UserName</th>
+                        <th>IsDeleted</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <th>Id</th>
+                        <th>Name</th>
+                        <th>Surname</th>
+                        <th>Contact</th>
+                        <th>Picture</th>
+                        <th>StudentCreatedDate</th>
+                        <th>UserName</th>
+                        <th>IsDeleted</th>
+                        <th></th>
+                    </tr>
+                </tfoot>
+                <tbody>
+                    @foreach (var student in Model)
+                    {
+                        <tr>
+                            <td>@student.Id</td>
+                            <td>@student.Name</td>
+                            <td>@student.Surname</td>
+                            <td>@student.Contact</td>
+                            <td><img src="@student.Picture" width="200" height="100" /></td>
+                            <td>@student.StudentCreatedDate</td>
+                            <td>@student.User.UserName</td>
+                            <td>@student.IsDeleted</td>
+
+                            <td class="col-2">
+                                <a href="/dashboard/student/edit/@student.Id" class="btn btn-outline-warning">Edit</a>
+                                <a href="/dashboard/student/delete/@student.Id" class="btn btn-outline-danger">Delete</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
