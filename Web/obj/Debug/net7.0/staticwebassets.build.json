@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "oOEknHE4uwXXhzWIzo1WJuFrBx+ZoOXCcRx+H8D9ihc=",
+  "Hash": "sGif0WN6P7it9Q0FLesyHJ0uBmkPMOdAp3F7xN0cbok=",
   "Source": "Web",
   "BasePath": "_content/Web",
   "Mode": "Default",
@@ -32215,12 +32215,12 @@
       "OriginalItemSpec": "wwwroot\\admin\\vendor\\jquery-easing\\jquery.easing.min.js"
     },
     {
-      "Identity": "F:\\ExaminationSystem\\Web\\wwwroot\\uploads\\19e79578-1167-4b86-822c-fdf2d72ee7b33. Леопард.jpg",
+      "Identity": "F:\\ExaminationSystem\\Web\\wwwroot\\uploads\\676fa90a-0d77-483f-b01e-c98d11ec51482. Хаски.jpg",
       "SourceId": "Web",
       "SourceType": "Discovered",
       "ContentRoot": "F:\\ExaminationSystem\\Web\\wwwroot\\",
       "BasePath": "_content/Web",
-      "RelativePath": "uploads/19e79578-1167-4b86-822c-fdf2d72ee7b33. Леопард.jpg",
+      "RelativePath": "uploads/676fa90a-0d77-483f-b01e-c98d11ec51482. Хаски.jpg",
       "AssetKind": "All",
       "AssetMode": "All",
       "AssetRole": "Primary",
@@ -32229,41 +32229,7 @@
       "AssetTraitValue": "",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\19e79578-1167-4b86-822c-fdf2d72ee7b33. Леопард.jpg"
-    },
-    {
-      "Identity": "F:\\ExaminationSystem\\Web\\wwwroot\\uploads\\32fe1c9d-c242-4e41-b99a-72bd45cd5eb93. Леопард.jpg",
-      "SourceId": "Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "F:\\ExaminationSystem\\Web\\wwwroot\\",
-      "BasePath": "_content/Web",
-      "RelativePath": "uploads/32fe1c9d-c242-4e41-b99a-72bd45cd5eb93. Леопард.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\32fe1c9d-c242-4e41-b99a-72bd45cd5eb93. Леопард.jpg"
-    },
-    {
-      "Identity": "F:\\ExaminationSystem\\Web\\wwwroot\\uploads\\e903224c-8a06-4137-a313-26fb90dcc1962. Хаски.jpg",
-      "SourceId": "Web",
-      "SourceType": "Discovered",
-      "ContentRoot": "F:\\ExaminationSystem\\Web\\wwwroot\\",
-      "BasePath": "_content/Web",
-      "RelativePath": "uploads/e903224c-8a06-4137-a313-26fb90dcc1962. Хаски.jpg",
-      "AssetKind": "All",
-      "AssetMode": "All",
-      "AssetRole": "Primary",
-      "RelatedAsset": "",
-      "AssetTraitName": "",
-      "AssetTraitValue": "",
-      "CopyToOutputDirectory": "Never",
-      "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "wwwroot\\uploads\\e903224c-8a06-4137-a313-26fb90dcc1962. Хаски.jpg"
+      "OriginalItemSpec": "wwwroot\\uploads\\676fa90a-0d77-483f-b01e-c98d11ec51482. Хаски.jpg"
     }
   ]
 }

@@ -10,7 +10,7 @@
     <input type="file" class="form-control mb-4" name="NewPhoto" placeholder="PhotoUrl" />
     <span>
         <label style="user-select:none" for="deleted">Is Deleted</label>
-        <input id="deleted" @(Model.IsDeleted ? "checked" : null) type="checkbox" name="Is Deleted" />
+        <input id="deleted" value="true" @(Model.IsDeleted ? "checked" : null) type="checkbox" name="IsDeleted" />
     </span>
     <select name="userId" class="form-control mb-4">
         @foreach (var usr in ViewData["Users"] as IEnumerable<User>)

@@ -61,7 +61,6 @@ namespace Web.Areas.Dashboard.Controllers
                 {
                     student.Picture = OldPhoto;
                 }
-                student.IsDeleted = !student.IsDeleted;
                 student.StudentCreatedDate = DateTime.Now;
                 _context.Students.Update(student);
                 _context.SaveChanges();

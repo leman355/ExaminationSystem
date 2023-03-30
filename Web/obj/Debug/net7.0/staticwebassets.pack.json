@@ -7333,16 +7333,8 @@
       "PackagePath": "staticwebassets\\admin\\vendor\\jquery\\jquery.slim.min.map"
     },
     {
-      "Id": "F:\\ExaminationSystem\\Web\\wwwroot\\uploads\\19e79578-1167-4b86-822c-fdf2d72ee7b33. Леопард.jpg",
-      "PackagePath": "staticwebassets\\uploads\\19e79578-1167-4b86-822c-fdf2d72ee7b33. Леопард.jpg"
-    },
-    {
-      "Id": "F:\\ExaminationSystem\\Web\\wwwroot\\uploads\\32fe1c9d-c242-4e41-b99a-72bd45cd5eb93. Леопард.jpg",
-      "PackagePath": "staticwebassets\\uploads\\32fe1c9d-c242-4e41-b99a-72bd45cd5eb93. Леопард.jpg"
-    },
-    {
-      "Id": "F:\\ExaminationSystem\\Web\\wwwroot\\uploads\\e903224c-8a06-4137-a313-26fb90dcc1962. Хаски.jpg",
-      "PackagePath": "staticwebassets\\uploads\\e903224c-8a06-4137-a313-26fb90dcc1962. Хаски.jpg"
+      "Id": "F:\\ExaminationSystem\\Web\\wwwroot\\uploads\\676fa90a-0d77-483f-b01e-c98d11ec51482. Хаски.jpg",
+      "PackagePath": "staticwebassets\\uploads\\676fa90a-0d77-483f-b01e-c98d11ec51482. Хаски.jpg"
     },
     {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Web.Microsoft.AspNetCore.StaticWebAssets.props",
