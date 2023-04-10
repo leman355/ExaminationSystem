@@ -7,10 +7,10 @@
         <label style="user-select:none" for="deleted">Is Deleted</label>
         <input id="deleted" type="checkbox" name="Is Deleted" />
     </span>
-   <select name="userId" class="form-control mb-4">
-        @foreach (var usr in ViewData["Users"] as IEnumerable<User>)
+    <select name="groupId" class="form-control mb-4">
+        @foreach (var group in ViewData["Groups"] as IEnumerable<Group>)
         {
-            <option value="@usr.Id">@usr.Name</option>
+            <option value="@group.Id">@group.GroupName</option>
         }
     </select>
     <input type="submit" class="btn btn-outline-success mt-2" value="create" />

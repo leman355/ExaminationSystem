@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Student>
+﻿@model StudentVM
 <a href="/dashboard/student/create" class="btn btn-outline-primary mb-3">Create</a>
 
 
@@ -18,7 +18,9 @@
                         <th>Contact </th>
                         <th>Picture</th>
                         <th>StudentCreatedDate</th>
-                        <th>UserName</th>
+                        <th>UpdatedDate</th>
+                        <th>Group</th>
+                        @*<th>UserName</th>*@
                         <th>IsDeleted</th>
                         <th></th>
                     </tr>
@@ -31,13 +33,15 @@
                         <th>Contact</th>
                         <th>Picture</th>
                         <th>StudentCreatedDate</th>
-                        <th>UserName</th>
+                        <th>UpdatedDate</th>
+                        <th>Group</th>
+                        @*<th>UserName</th>*@
                         <th>IsDeleted</th>
                         <th></th>
                     </tr>
                 </tfoot>
                 <tbody>
-                    @foreach (var student in Model)
+                    @foreach (var student in Model.Students)
                     {
                         <tr>
                             <td>@student.Id</td>
@@ -46,7 +50,21 @@
                             <td>@student.Contact</td>
                             <td><img src="@student.Picture" width="200" height="100" /></td>
                             <td>@student.StudentCreatedDate</td>
-                            <td>@student.User.UserName</td>
+                            <td>@student.UpdatedDate</td>
+                            <td>
+                                @foreach (var aaa in Model.StudentGroups.Where(x => x.StudentId == student.Id))
+                                {
+                                    <span class="btn btn-outline-success btn-sm my-1">@aaa.Group.GroupName</span>
+                                }
+                            </td>
+                            @*<td>
+                                @foreach (var studentGroup in Model.StudentGroups.Where(x => x.StudentId == student.Id))
+                                {
+                                    <span class="btn btn-outline-success btn-sm my-1">@studentGroup.Group.GroupName</span>
+                                }
+                            </td>*@
+
+                            @*<td>@student.User.UserName</td>*@
                             <td>@student.IsDeleted</td>
 
                             <td class="col-2">

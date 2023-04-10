@@ -42,9 +42,9 @@ namespace Web.Areas.Dashboard.Controllers
             }
         }
         [HttpGet]
-        public IActionResult Edit(string id)
+        public IActionResult Edit(int id)
         {
-            var edit = _context.Groups.FirstOrDefault(e => e.Id.ToString() == id);
+            var edit = _context.Groups.FirstOrDefault(e => e.Id == id);
             _context.SaveChanges();
             return View(edit);
         }
@@ -64,13 +64,13 @@ namespace Web.Areas.Dashboard.Controllers
             }
         }
         [HttpGet]
-        public async Task<IActionResult> Delete(string id)
+        public async Task<IActionResult> Delete(int id)
         {
-            var del = await _context.Groups.SingleOrDefaultAsync(x => x.Id.ToString() == id);
+            var del = await _context.Groups.SingleOrDefaultAsync(x => x.Id == id);
             return View(del);
         }
         [HttpPost]
-        public async Task<IActionResult> Delete(string id, Group group)
+        public async Task<IActionResult> Delete(Group group)
         {
             try
             {

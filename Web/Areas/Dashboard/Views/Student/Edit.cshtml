@@ -1,22 +1,29 @@
-﻿@model Student
+﻿@model StudentEditVM
 
 
 <form method="post" enctype="multipart/form-data" class="col-6 m-auto my-3">
-    <input type="text" value="@Model.Name" class="form-control mb-4" name="Name" placeholder="Student name" />
-    <input type="text" value="@Model.Surname" class="form-control mb-4" name="Surname" placeholder="Surname" />
-    <input type="text" value="@Model.Contact" class="form-control mb-4" name="Contact" placeholder="Contact" />
-    <input type="hidden" name="OldPhoto" value="@Model.Picture" />
-    <img src="@Model.Picture" width="500" height="250" class="mb-2" />
+    <input type="text" value="@Model.Students.Name" class="form-control mb-4" name="Name" placeholder="Student name" />
+    <input type="text" value="@Model.Students.Surname" class="form-control mb-4" name="Surname" placeholder="Surname" />
+    <input type="text" value="@Model.Students.Contact" class="form-control mb-4" name="Contact" placeholder="Contact" />
+    <input type="hidden" name="OldPhoto" value="@Model.Students.Picture" />
+    <img src="@Model.Students.Picture" width="500" height="250" class="mb-2" />
     <input type="file" class="form-control mb-4" name="NewPhoto" placeholder="PhotoUrl" />
     <span>
         <label style="user-select:none" for="deleted">Is Deleted</label>
-        <input id="deleted" value="true" @(Model.IsDeleted ? "checked" : null) type="checkbox" name="IsDeleted" />
+        <input id="deleted" value="true" @(Model.Students.IsDeleted ? "checked" : null) type="checkbox" name="IsDeleted" />
     </span>
-    <select name="userId" class="form-control mb-4">
-        @foreach (var usr in ViewData["Users"] as IEnumerable<User>)
-        {
-            <option value="@usr.Id">@usr.Name</option>
-        }
+    <select name="groupId" class="form-control mb-4">
+    @foreach (var group in Model.Groups)
+    {
+            <option @(Model.StudentGroups.Any(x => x.GroupId == group.Id) == true ? "selected" : null) value="@group.Id">@group.GroupName</option>
+            @*<option value="@group.Id">@group.GroupName</option>*@
+    }
     </select>
+    @*    <select name="userId" class="form-control mb-4">
+        @foreach (var group in ViewData["Groups"] as IEnumerable<Group>)
+        {
+            <option value="@group.Id">@group.GroupName</option>
+        }
+    </select>*@
     <input type="submit" class="btn btn-outline-primary mt-2" value="update" />
 </form>

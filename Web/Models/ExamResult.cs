@@ -2,8 +2,10 @@
 {
     public class ExamResult
     {
-        public Guid Id { get; set; }
+        public int Id { get; set; }
         public Exam Exam { get; set; }
+        public int ExamId { get; set; }
         public User User { get; set; }
+        public string UserId { get; set; }
     }
 }
