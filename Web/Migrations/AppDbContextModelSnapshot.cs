@@ -271,6 +271,9 @@ namespace Web.Migrations
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
                     b.HasKey("Id");
 
                     b.ToTable("Groups");
@@ -287,6 +290,9 @@ namespace Web.Migrations
                     b.Property<string>("Content")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
 
                     b.HasKey("Id");
 
@@ -337,7 +343,7 @@ namespace Web.Migrations
                     b.Property<string>("Picture")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("StudentCreatedDate")
+                    b.Property<DateTime>("StudentCreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("Surname")

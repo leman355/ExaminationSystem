@@ -31,7 +31,7 @@ namespace Web.Areas.Dashboard.Controllers
         {
             try
             {
-                group.GroupCreatedDate = DateTime.Now;
+                group.UpdatedDate = DateTime.Now;
                 _context.Groups.Add(group);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
@@ -53,7 +53,7 @@ namespace Web.Areas.Dashboard.Controllers
         {
             try
             {
-                group.GroupCreatedDate = DateTime.Now;
+                group.UpdatedDate = DateTime.Now;
                 _context.Groups.Update(group);
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");

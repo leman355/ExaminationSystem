@@ -52,9 +52,9 @@
                             <td>@student.StudentCreatedDate</td>
                             <td>@student.UpdatedDate</td>
                             <td>
-                                @foreach (var aaa in Model.StudentGroups.Where(x => x.StudentId == student.Id))
+                                @foreach (var studentGroup in Model.StudentGroups.Where(x => x.StudentId == student.Id))
                                 {
-                                    <span class="btn btn-outline-success btn-sm my-1">@aaa.Group.GroupName</span>
+                                    <span class="btn btn-outline-success btn-sm my-1">@studentGroup.Group.GroupName</span>
                                 }
                             </td>
                             @*<td>

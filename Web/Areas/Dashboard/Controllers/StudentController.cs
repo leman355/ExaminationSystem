@@ -54,11 +54,11 @@ namespace Web.Areas.Dashboard.Controllers
             student.UpdatedDate = DateTime.Now;
             _context.Students.Add(student);
             _context.SaveChanges();
-            var gr = _context.Groups.FirstOrDefault(x=>x.Id== groupId);
+            var gr = _context.Groups.FirstOrDefault(x => x.Id == groupId);
             StudentGroup studentGroup = new()
             {
                 StudentId = student.Id,
-                GroupId = gr.Id
+                GroupId = gr.Id,
             };
             _context.StudentGroups.Add(studentGroup);
             _context.SaveChanges();
@@ -93,7 +93,7 @@ namespace Web.Areas.Dashboard.Controllers
             //}
         }
         [HttpGet]
-        public async Task<IActionResult> Edit(Student studentusr, int id)
+        public async Task<IActionResult> Edit(Student studentusr, int id, StudentGroup st)
         {
             ViewData["StudentUser"] = _context.Users.Where(x => x.Id == studentusr.UserId);
             //var student = _context.Students.SingleOrDefault(x => x.Id.ToString() == id);
@@ -110,6 +110,7 @@ namespace Web.Areas.Dashboard.Controllers
             };
             return View(editVM);
         }
+        [HttpPost]
         public IActionResult Edit(Student student, IFormFile NewPhoto, string OldPhoto, int groupId)
         {
             try
@@ -128,14 +129,14 @@ namespace Web.Areas.Dashboard.Controllers
                 var studentGroup = _context.StudentGroups.Where(x => x.StudentId == student.Id).ToList();
                 _context.StudentGroups.RemoveRange(studentGroup);
                 _context.SaveChanges();
-                var gr = _context.Groups.FirstOrDefault(x=>x.Id== groupId);
+                var gr = _context.Groups.FirstOrDefault(x => x.Id == groupId);
                 StudentGroup stgr = new()
                 {
                     StudentId = student.Id,
-                    GroupId = gr.Id
+                    GroupId = gr.Id,
                 };
-                 _context.StudentGroups.Add(stgr);
-                 _context.SaveChanges();
+                _context.StudentGroups.Add(stgr);
+                _context.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch (Exception e)

@@ -1,0 +1,20 @@
+﻿@model QuestionEditVM
+
+
+
+<div class="card shadow mb-4 py-5">
+    <form method="post" class="col-6 m-auto my-3">
+        <input type="text" class="form-control" value="@Model.Questions.Content" name="Content" placeholder="Content" />
+        <span>
+            <label style="user-select:none" for="deleted">Is Deleted</label>
+            <input id="deleted" value="true" @(Model.Questions.IsDeleted ? "checked" : null) type="checkbox" name="IsDeleted" />
+        </span>
+        <select class="my-3" name="ansIds" multiple data-placeholder="Select Answers">
+            @foreach (var ans in Model.Answers)
+            {
+                <option @(Model.QuestionAnswers.Any(x => x.AnswerId == ans.Id) == true ? "selected" : null) value="@ans.Id">@ans.Option</option>
+            }
+        </select>
+        <input type="submit" class="btn btn-outline-success mt-2" value="Edit" />
+    </form>
+</div>

@@ -1,4 +1,6 @@
-﻿namespace Web.Areas.Dashboard.DTOs
+﻿using Microsoft.AspNetCore.Identity;
+
+namespace Web.Areas.Dashboard.DTOs
 {
     public class RegisterDTO
     {
