@@ -1,4 +1,4 @@
-﻿@model  QuestionVM
+﻿@model QuestionVM
 <a href="/dashboard/question/create" class="btn btn-outline-primary mb-3">Create</a>
 
 
@@ -39,7 +39,14 @@
                             <td>
                                 @foreach (var questionanswer in Model.QuestionAnswers.Where(x => x.QuestionId == question.Id))
                                 {
-                                    <p class="btn btn-outline-success btn-sm my-1">@questionanswer.Answer.Option</p>
+                                    if (questionanswer.Answer.Status)
+                                    {
+                                        <p class="btn btn-outline-success btn-sm my-1">@questionanswer.Answer.Option</p>
+                                    }
+                                    else
+                                    {
+                                        <p class="btn btn-outline-danger btn-sm my-1">@questionanswer.Answer.Option</p>
+                                    }
                                 }
                             </td>
                             <td class="col-2">
