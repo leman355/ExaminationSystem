@@ -9,7 +9,7 @@
             <label style="user-select:none" for="deleted">Is Deleted</label>
             <input id="deleted" value="true" @(Model.Questions.IsDeleted ? "checked" : null) type="checkbox" name="IsDeleted" />
         </span>
-        <select class="my-3" name="ansIds" multiple data-placeholder="Select Answers">
+        <select class="my-3 form-control" name="ansIds" multiple data-placeholder="Select Answers">
             @foreach (var ans in Model.Answers)
             {
                 <option @(Model.QuestionAnswers.Any(x => x.AnswerId == ans.Id) == true ? "selected" : null) value="@ans.Id">@ans.Option</option>

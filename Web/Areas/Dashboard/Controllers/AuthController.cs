@@ -10,10 +10,13 @@ namespace Web.Areas.Dashboard.Controllers
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
-        public AuthController(UserManager<User> userManager, SignInManager<User> signInManager)
+        private readonly RoleManager<IdentityRole> _roleManager;
+
+        public AuthController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager)
         {
             _userManager = userManager;
             _signInManager = signInManager;
+            _roleManager = roleManager;
         }
 
         [HttpGet]
@@ -53,7 +56,7 @@ namespace Web.Areas.Dashboard.Controllers
                 Email = registerDTO.Email,
                 Name = registerDTO.Name,
                 Surname = registerDTO.Surname,
-                UserName = registerDTO.UserName
+                UserName = registerDTO.UserName,
             };
             IdentityResult result = await _userManager.CreateAsync(newUser, registerDTO.Password);
             if (result.Succeeded)

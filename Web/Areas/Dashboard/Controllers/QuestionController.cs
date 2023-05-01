@@ -19,43 +19,59 @@ namespace Web.Areas.Dashboard.Controllers
 
         public IActionResult Index()
         {
-         
+
             var question = _context.Questions.ToList();
             var questionAnswers = _context.QuestionAnswers.Include(x => x.Answer).ToList();
+            var answer = _context.Answers.ToList();
 
             QuestionVM vm = new()
             {
                 Questions = question,
                 QuestionAnswers = questionAnswers,
+                Answers = answer,
             };
             return View(vm);
         }
 
         [HttpGet]
         public async Task<IActionResult> Create()
-
         {
-            ViewData["Answ"] = await _context.Answers.ToListAsync();
+
+            //ViewData["Answ"] = await _context.Answers.ToListAsync();
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Question question, int[] ansIds)
+        public async Task<IActionResult> Create(Question question, string[] Option, bool[] Status)
         {
             try
             {
                 await _context.Questions.AddAsync(question);
                 await _context.SaveChangesAsync();
-                for (int i = 0; i < ansIds.Length; i++)
+                //if (Option.Length != Status.Length)
+                //{
+                //    return BadRequest("Invalid input");
+                //}
+                for (int i = 0; i < Option.Length; i++)
                 {
+                    Answer answer = new()
+                    {
+                        Option = Option[i],
+                        //Status = Status[i],
+                        Status = Status[i] || Request.Form["Status"][i] == "true",
+                    };
+                    await _context.Answers.AddAsync(answer);
+                    await _context.SaveChangesAsync();
+
                     QuestionAnswer questionAnswer = new()
                     {
                         QuestionId = question.Id,
-                        AnswerId = ansIds[i]
+                        AnswerId = answer.Id
                     };
                     await _context.QuestionAnswers.AddAsync(questionAnswer);
                     await _context.SaveChangesAsync();
                 }
+
                 return RedirectToAction("Index");
             }
             catch (Exception)
@@ -63,6 +79,8 @@ namespace Web.Areas.Dashboard.Controllers
                 return NotFound();
             }
         }
+
+
 
 
         //public async Task<IActionResult> Create(Question question, List<string> ansIds)
@@ -109,7 +127,7 @@ namespace Web.Areas.Dashboard.Controllers
                 {
                     Questions = question,
                     Answers = answers,
-                    QuestionAnswers=questionAnswers,
+                    QuestionAnswers = questionAnswers,
                 };
                 return View(editVM);
 
@@ -149,7 +167,7 @@ namespace Web.Areas.Dashboard.Controllers
                 {
                     QuestionAnswer questionAnswer = new()
                     {
-                        QuestionId=question.Id,
+                        QuestionId = question.Id,
                         AnswerId = ansIds[i]
                     };
                     await _context.QuestionAnswers.AddAsync(questionAnswer);

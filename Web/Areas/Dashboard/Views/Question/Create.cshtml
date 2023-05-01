@@ -1,14 +1,41 @@
-﻿<form method="post" enctype="multipart/form-data" class="col-6 m-auto my-3">
+﻿<form method="post" enctype="multipart/form-data" class="col-6 m-auto my-3" id="form">
     <input type="text" class="form-control my-3" name="Content" placeholder="Content" />
-    <select class="my-3" name="ansIds[]" multiple data-placeholder="Select Answers">
-        @foreach (var ans in ViewData["Answ"] as List<Answer>)
-        {
-            <option value="@ans.Id">@ans.Option</option>
-        }
-    </select>
+    @*    <select class="my-3 form-control " name="ansIds[]" multiple data-placeholder="Select Answers">
+    @foreach (var ans in ViewData["Answ"] as List<Answer>)
+    {
+    <option value="@ans.Id">@ans.Option</option>
+    }
+    </select>*@   
+    <div id="container" name="ansIds">
+        <div id="input-container" name="ansIds">
+        <input type="text" class="form-control" name="Option" placeholder="Answer option" />
+        <span>
+            <label style="user-select:none" for="stat">Is True</label>
+
+            <input id="stat" value="true" type="checkbox" name="Status" />
+            <input type="hidden" name="Status" value="false" />
+        </span>
+    </div>
+    </div>
+    <button class="btn btn-outline-dark" id="add-input-button" type="button">Add input</button>
+
     <span>
-        <label style="user-select:none" for="deleted">Is Deleted</label>
+        <label style="user-select:none" for="deleted">Is Deleted Question with answers</label>
         <input id="deleted" type="checkbox" name="IsDeleted" />
     </span>
+
     <input type="submit" class="btn btn-outline-success mt-3" value="Create" />
 </form>
+<script>
+    const inputContainer = document.querySelector('#input-container');
+    const container = document.querySelector('#container');
+    const addButton = document.querySelector('#add-input-button');
+
+    addButton.addEventListener('click', () => {
+        const clonedDiv = inputContainer.cloneNode(true);
+        container.appendChild(clonedDiv);
+    });
+</script>
+
+
+

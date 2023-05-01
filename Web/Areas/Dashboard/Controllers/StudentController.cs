@@ -93,7 +93,7 @@ namespace Web.Areas.Dashboard.Controllers
             //}
         }
         [HttpGet]
-        public async Task<IActionResult> Edit(Student studentusr, int id, StudentGroup st)
+        public async Task<IActionResult> Edit(Student studentusr, int id)
         {
             ViewData["StudentUser"] = _context.Users.Where(x => x.Id == studentusr.UserId);
             //var student = _context.Students.SingleOrDefault(x => x.Id.ToString() == id);
