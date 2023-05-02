@@ -1,41 +1,54 @@
-﻿<form method="post" enctype="multipart/form-data" class="col-6 m-auto my-3" id="form">
+﻿<form method="post" enctype="multipart/form-data" class="col-6 m-auto my-3">
     <input type="text" class="form-control my-3" name="Content" placeholder="Content" />
-    @*    <select class="my-3 form-control " name="ansIds[]" multiple data-placeholder="Select Answers">
-    @foreach (var ans in ViewData["Answ"] as List<Answer>)
-    {
-    <option value="@ans.Id">@ans.Option</option>
-    }
-    </select>*@   
-    <div id="container" name="ansIds">
-        <div id="input-container" name="ansIds">
-        <input type="text" class="form-control" name="Option" placeholder="Answer option" />
-        <span>
-            <label style="user-select:none" for="stat">Is True</label>
-
-            <input id="stat" value="true" type="checkbox" name="Status" />
-            <input type="hidden" name="Status" value="false" />
+    <div id="input-container">
+        <div class="input-group">
+            <input type="text" class="form-control" name="Option" placeholder="Answer option" />
+         <span class="input-group-text">
+                <input id="stat-true" type="checkbox" name="Status" value="true" />
+                <input type="hidden" name="Status" value="null" />
         </span>
-    </div>
+        </div>
     </div>
     <button class="btn btn-outline-dark" id="add-input-button" type="button">Add input</button>
-
-    <span>
-        <label style="user-select:none" for="deleted">Is Deleted Question with answers</label>
-        <input id="deleted" type="checkbox" name="IsDeleted" />
-    </span>
-
+    <p>Input count:  <span id="input-count">1</span></p>
     <input type="submit" class="btn btn-outline-success mt-3" value="Create" />
 </form>
+
 <script>
     const inputContainer = document.querySelector('#input-container');
-    const container = document.querySelector('#container');
     const addButton = document.querySelector('#add-input-button');
+    const p = document.querySelector('#input-count');
+    let inputCount = 1;
 
     addButton.addEventListener('click', () => {
-        const clonedDiv = inputContainer.cloneNode(true);
-        container.appendChild(clonedDiv);
+        inputCount++;
+        const newInputGroup = document.createElement('div');
+        newInputGroup.className = 'input-group';
+        const newInput = document.createElement('input');
+        newInput.type = 'text';
+        newInput.className = 'form-control';
+        newInput.name = 'Option';
+        newInput.placeholder = 'Answer option';
+        const newCheckbox = document.createElement('input');
+        newCheckbox.type = 'checkbox';
+        newCheckbox.name = 'Status';
+        newCheckbox.value = 'true';
+        newCheckbox.id = 'stat-true';
+
+        //const falseCheckbox = document.createElement('input');
+        //falseCheckbox.type = 'hidden';
+        //falseCheckbox.name = 'Status';
+        //falseCheckbox.value = 'false';
+        //falseCheckbox.id = 'stat-false';
+
+        const newSpan = document.createElement('span');
+        newSpan.className = 'input-group-text';
+        newSpan.appendChild(newCheckbox);
+        //newSpan.appendChild(falseCheckbox);
+
+        p.innerHTML = `${inputCount}`
+        newInputGroup.appendChild(newInput);
+        newInputGroup.appendChild(newSpan);
+        inputContainer.appendChild(newInputGroup);
     });
 </script>
-
-
-

@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using System.Diagnostics;
 using System.Reflection.Metadata;
 using Web.Areas.Dashboard.ViewModels;
 using Web.Data;
@@ -50,15 +51,19 @@ namespace Web.Areas.Dashboard.Controllers
                 await _context.SaveChangesAsync();
                 //if (Option.Length != Status.Length)
                 //{
+                //    Debug.WriteLine($"Option length: {Option.Length}; Status length: {Status.Length}");
                 //    return BadRequest("Invalid input");
                 //}
+
                 for (int i = 0; i < Option.Length; i++)
                 {
                     Answer answer = new()
                     {
                         Option = Option[i],
-                        //Status = Status[i],
-                        Status = Status[i] || Request.Form["Status"][i] == "true",
+                        Status = Status[i],
+                        //Status = Status[i] || Request.Form["Status"][i] == "true",
+                        //Status = Status.Length > i ? Status[i] : false 
+                        //Status = Request.Form[$"Status{i}"] == "true",
                     };
                     await _context.Answers.AddAsync(answer);
                     await _context.SaveChangesAsync();
