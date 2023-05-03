@@ -43,10 +43,11 @@ namespace Web.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Question question, string[] Option, bool[] Status)
+        public async Task<IActionResult> Create(Question question, string[] Option, bool IsDeleted)
         {
             try
             {
+                question.IsDeleted = IsDeleted;
                 await _context.Questions.AddAsync(question);
                 await _context.SaveChangesAsync();
                 //if (Option.Length != Status.Length)
@@ -54,37 +55,38 @@ namespace Web.Areas.Dashboard.Controllers
                 //    Debug.WriteLine($"Option length: {Option.Length}; Status length: {Status.Length}");
                 //    return BadRequest("Invalid input");
                 //}
-
                 for (int i = 0; i < Option.Length; i++)
                 {
-                    Answer answer = new()
+                    if (Option[i] != null)
                     {
-                        Option = Option[i],
-                        Status = Status[i],
-                        //Status = Status[i] || Request.Form["Status"][i] == "true",
-                        //Status = Status.Length > i ? Status[i] : false 
-                        //Status = Request.Form[$"Status{i}"] == "true",
-                    };
-                    await _context.Answers.AddAsync(answer);
-                    await _context.SaveChangesAsync();
+                        bool.TryParse(Request.Form[$"Status_{i}"], out bool status);
+                        Answer answer = new()
+                        {
+                            Option = Option[i],
+                            //Status = Status[i],
+                            //Status = Status[i] || Request.Form["Status"][i] == "true",
+                            //Status = Status.Length > i ? Status[i] : false ,
+                            Status = status,
+                        };
+                        await _context.Answers.AddAsync(answer);
+                        await _context.SaveChangesAsync();
 
-                    QuestionAnswer questionAnswer = new()
-                    {
-                        QuestionId = question.Id,
-                        AnswerId = answer.Id
-                    };
-                    await _context.QuestionAnswers.AddAsync(questionAnswer);
-                    await _context.SaveChangesAsync();
+                        QuestionAnswer questionAnswer = new()
+                        {
+                            QuestionId = question.Id,
+                            AnswerId = answer.Id
+                        };
+                        await _context.QuestionAnswers.AddAsync(questionAnswer);
+                        await _context.SaveChangesAsync();
+                    }
                 }
-
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception)
             {
                 return NotFound();
             }
         }
-
 
 
 
