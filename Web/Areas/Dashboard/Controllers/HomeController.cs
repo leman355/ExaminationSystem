@@ -2,7 +2,7 @@
 
 namespace Web.Areas.Dashboard.Controllers
 {
-    [Area("Dashboard")]
+    [Area(nameof(Dashboard))]
     public class HomeController : Controller
     {
         public IActionResult Index()

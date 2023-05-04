@@ -5,7 +5,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Student datatable</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -17,11 +17,11 @@
                         <th>Surname</th>
                         <th>Contact </th>
                         <th>Picture</th>
-                        <th>StudentCreatedDate</th>
-                        <th>UpdatedDate</th>
+                        <th>Created Date</th>
+                        <th>Updated Date</th>
                         <th>Group</th>
                         @*<th>UserName</th>*@
-                        <th>IsDeleted</th>
+                        <th>Is Deleted</th>
                         <th></th>
                     </tr>
                 </thead>
@@ -32,11 +32,11 @@
                         <th>Surname</th>
                         <th>Contact</th>
                         <th>Picture</th>
-                        <th>StudentCreatedDate</th>
-                        <th>UpdatedDate</th>
+                        <th>Created Date</th>
+                        <th>Updated Date</th>
                         <th>Group</th>
                         @*<th>UserName</th>*@
-                        <th>IsDeleted</th>
+                        <th>Is Deleted</th>
                         <th></th>
                     </tr>
                 </tfoot>
@@ -49,7 +49,7 @@
                             <td>@student.Surname</td>
                             <td>@student.Contact</td>
                             <td><img src="@student.Picture" width="200" height="100" /></td>
-                            <td>@student.StudentCreatedDate</td>
+                            <td>@student.CreatedDate</td>
                             <td>@student.UpdatedDate</td>
                             <td>
                                 @foreach (var studentGroup in Model.StudentGroups.Where(x => x.StudentId == student.Id))

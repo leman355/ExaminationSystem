@@ -3,9 +3,9 @@
     <input type="text" class="form-control mb-4" name="Surname" placeholder="Surname" />
     <input type="text" class="form-control mb-4" name="Contact" placeholder="Contact" />
     <input type="file" class="form-control mb-4" name="NewPhoto" placeholder="Picture" />
-    <span>
+   <span>
         <label style="user-select:none" for="deleted">Is Deleted</label>
-        <input id="deleted" type="checkbox" name="Is Deleted" />
+        <input value="true" id="deleted" type="checkbox" name="IsDeleted" />
     </span>
     <select name="groupId" class="form-control mb-4">
         @foreach (var group in ViewData["Groups"] as IEnumerable<Group>)

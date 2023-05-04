@@ -5,7 +5,7 @@
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
-        <h6 class="m-0 font-weight-bold text-primary">DataTables Example</h6>
+        <h6 class="m-0 font-weight-bold text-primary">Question datatable</h6>
     </div>
     <div class="card-body">
         <div class="table-responsive">
@@ -13,6 +13,7 @@
                 <thead>
                     <tr>
                         <th>Id</th>
+                        <th>Exam Category Name</th>
                         <th>Content</th>
                         <th>IsDeleted</th>
                         <th>Answers</th>
@@ -22,6 +23,7 @@
                 <tfoot>
                     <tr>
                         <th>Id</th>
+                        <th>Exam Category Name</th>
                         <th>Content</th>
                         <th>IsDeleted</th>
                         <th>Answers</th>
@@ -33,6 +35,7 @@
                     {
                         <tr>
                             <td>@question.Id</td>
+                            <td>@question.ExamCategory.CategoryName</td>
                             <td>@question.Content</td>
                             <td>@question.IsDeleted</td>
 

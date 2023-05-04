@@ -7333,6 +7333,18 @@
       "PackagePath": "staticwebassets\\admin\\vendor\\jquery\\jquery.slim.min.map"
     },
     {
+      "Id": "F:\\ExaminationSystem\\Web\\wwwroot\\uploads\\c69c7483-7540-4ef7-bfc9-6eb59828ab627. Бабочка.jpg",
+      "PackagePath": "staticwebassets\\uploads\\c69c7483-7540-4ef7-bfc9-6eb59828ab627. Бабочка.jpg"
+    },
+    {
+      "Id": "F:\\ExaminationSystem\\Web\\wwwroot\\uploads\\ca4a7da8-f678-45ee-80c8-4d18e50ec71d9. Пустыня.jpg",
+      "PackagePath": "staticwebassets\\uploads\\ca4a7da8-f678-45ee-80c8-4d18e50ec71d9. Пустыня.jpg"
+    },
+    {
+      "Id": "F:\\ExaminationSystem\\Web\\wwwroot\\uploads\\caa167df-e99e-4861-aca3-f0c54ce4420a7. Бабочка.jpg",
+      "PackagePath": "staticwebassets\\uploads\\caa167df-e99e-4861-aca3-f0c54ce4420a7. Бабочка.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Web.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },

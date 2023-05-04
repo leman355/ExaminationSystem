@@ -10,7 +10,7 @@ using Web.Models;
 
 namespace Web.Areas.Dashboard.Controllers
 {
-    [Area("Dashboard")]
+    [Area(nameof(Dashboard))]
     [Authorize]
     public class StudentController : Controller
     {
@@ -46,11 +46,12 @@ namespace Web.Areas.Dashboard.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Create(Student student, IFormFile NewPhoto, int groupId)
+        public IActionResult Create(Student student, IFormFile NewPhoto, int groupId, bool IsDeleted)
         {
+            student.IsDeleted = IsDeleted;
             student.Picture = ImageHelper.UploadImage(NewPhoto, _webHostEnvironment);
             //student.UserId = userId;
-            student.StudentCreatedDate = DateTime.Now;
+            student.CreatedDate = DateTime.Now;
             student.UpdatedDate = DateTime.Now;
             _context.Students.Add(student);
             _context.SaveChanges();
@@ -62,35 +63,7 @@ namespace Web.Areas.Dashboard.Controllers
             };
             _context.StudentGroups.Add(studentGroup);
             _context.SaveChanges();
-            return RedirectToAction("Index");
-            //try
-            //{
-            //student.UserId = userId;
-
-            //student.Picture = ImageHelper.UploadImage(NewPhoto, _webHostEnvironment);
-            //student.StudentCreatedDate = DateTime.Now;
-            //student.UpdatedDate = DateTime.Now;
-            //_context.Students.Update(student);
-            //var studentGroup = _context.StudentGroups.Where(x => x.StudentId == student.Id.ToString()).ToList();
-            //_context.StudentGroups.RemoveRange(studentGroup);
-            //_context.SaveChanges();
-            //for (int i = 0; i < groupIds.Length; i++)
-            //{
-            //StudentGroup stgr = new()
-            //    {
-            //        StudentId = student.Id.ToString(),
-            //        //GroupId = groupIds[i],
-            //        GroupId = group.Id.ToString(),
-            //    };
-            //     _context.StudentGroups.Add(stgr);
-            //     _context.SaveChanges();
-            //}
-            //return RedirectToAction("Index");
-            //}
-            //catch (Exception e)
-            //{
-            //    return View();
-            //}
+            return RedirectToAction(nameof(Index));
         }
         [HttpGet]
         public async Task<IActionResult> Edit(Student studentusr, int id)
@@ -99,7 +72,7 @@ namespace Web.Areas.Dashboard.Controllers
             //var student = _context.Students.SingleOrDefault(x => x.Id.ToString() == id);
             //return View(student);
             var student = await _context.Students.FirstOrDefaultAsync(x => x.Id == id);
-            var group = _context.Groups.ToList();
+            var group = _context.Groups.Where(x => x.IsDeleted == false).ToList();
             var studentGroup = _context.StudentGroups.Where(x => x.StudentId == student.Id).ToList();
 
             StudentEditVM editVM = new()
@@ -111,7 +84,7 @@ namespace Web.Areas.Dashboard.Controllers
             return View(editVM);
         }
         [HttpPost]
-        public IActionResult Edit(Student student, IFormFile NewPhoto, string OldPhoto, int groupId)
+        public IActionResult Edit(Student student, IFormFile NewPhoto, string OldPhoto, int groupId, bool IsDeleted)
         {
             try
             {
@@ -124,6 +97,14 @@ namespace Web.Areas.Dashboard.Controllers
                     student.Picture = OldPhoto;
                 }
 
+                DateTime createdDate = _context.Students.AsNoTracking().FirstOrDefault(x => x.Id == student.Id)?.CreatedDate ?? DateTime.MinValue;
+                if (createdDate != DateTime.MinValue)
+                {
+                    student.CreatedDate = createdDate;
+                }
+                _context.Entry(student).Property(x => x.CreatedDate).IsModified = false;
+
+                student.IsDeleted = IsDeleted;
                 student.UpdatedDate = DateTime.Now;
                 _context.Students.Update(student);
                 var studentGroup = _context.StudentGroups.Where(x => x.StudentId == student.Id).ToList();
@@ -137,7 +118,7 @@ namespace Web.Areas.Dashboard.Controllers
                 };
                 _context.StudentGroups.Add(stgr);
                 _context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
             {
@@ -159,7 +140,7 @@ namespace Web.Areas.Dashboard.Controllers
                 var st = await _context.Students.SingleOrDefaultAsync(x => x.Id == student.Id);
                 st.IsDeleted = true;
                 await _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception)
             {

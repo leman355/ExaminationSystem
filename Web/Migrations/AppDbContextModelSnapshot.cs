@@ -264,7 +264,7 @@ namespace Web.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<DateTime>("GroupCreatedDate")
+                    b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<string>("GroupName")
@@ -336,6 +336,9 @@ namespace Web.Migrations
                     b.Property<string>("Contact")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -345,9 +348,6 @@ namespace Web.Migrations
 
                     b.Property<string>("Picture")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("StudentCreatedDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Surname")
                         .IsRequired()

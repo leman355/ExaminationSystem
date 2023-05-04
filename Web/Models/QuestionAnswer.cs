@@ -7,5 +7,7 @@
         public int AnswerId { get; set; }
         public Question Question { get; set; }
         public int QuestionId { get; set; }
+        public ExamCategory ExamCategory { get; set; }
+        public int ExamCategoryId { get; set; }
     }
 }

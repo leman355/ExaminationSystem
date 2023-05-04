@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
 using System.Reflection.Metadata;
@@ -8,7 +9,7 @@ using Web.Models;
 
 namespace Web.Areas.Dashboard.Controllers
 {
-    [Area("Dashboard")]
+    [Area(nameof(Dashboard))]
     public class QuestionController : Controller
     {
         private readonly AppDbContext _context;
@@ -21,13 +22,13 @@ namespace Web.Areas.Dashboard.Controllers
         public IActionResult Index()
         {
 
-            var question = _context.Questions.ToList();
+            var questions = _context.Questions.Include(x => x.ExamCategory).ToList();
             var questionAnswers = _context.QuestionAnswers.Include(x => x.Answer).ToList();
             var answer = _context.Answers.ToList();
 
             QuestionVM vm = new()
             {
-                Questions = question,
+                Questions = questions,
                 QuestionAnswers = questionAnswers,
                 Answers = answer,
             };
@@ -37,19 +38,22 @@ namespace Web.Areas.Dashboard.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-
+            var examCategories = _context.ExamCategories.ToList();
+            ViewBag.ExamCategories = new SelectList(examCategories, "Id", "Name");
             //ViewData["Answ"] = await _context.Answers.ToListAsync();
             return View();
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Question question, string[] Option, bool IsDeleted)
+        public async Task<IActionResult> Create(Question question, string[] Option, bool IsDeleted, int examCategoryId)
         {
             try
             {
                 question.IsDeleted = IsDeleted;
                 await _context.Questions.AddAsync(question);
                 await _context.SaveChangesAsync();
+
+                var examCat = _context.ExamCategories.FirstOrDefault(x => x.Id == examCategoryId);
                 for (int i = 0; i < Option.Length; i++)
                 {
                     if (Option[i] != null)
@@ -66,7 +70,8 @@ namespace Web.Areas.Dashboard.Controllers
                         QuestionAnswer questionAnswer = new()
                         {
                             QuestionId = question.Id,
-                            AnswerId = answer.Id
+                            AnswerId = answer.Id,
+                            ExamCategoryId= examCategoryId,
                         };
                         await _context.QuestionAnswers.AddAsync(questionAnswer);
                         await _context.SaveChangesAsync();
@@ -112,8 +117,16 @@ namespace Web.Areas.Dashboard.Controllers
                 question.IsDeleted = IsDeleted;
                 _context.Questions.Update(question);
                 await _context.SaveChangesAsync();
-                
+
                 var questionAnswers = _context.QuestionAnswers.Where(x => x.QuestionId == question.Id).ToList();
+                foreach (var qa in questionAnswers)
+                {
+                    var answer = _context.Answers.FirstOrDefault(a => a.Id == qa.AnswerId);
+                    if (answer != null)
+                    {
+                        _context.Answers.Remove(answer);
+                    }
+                }
                 _context.QuestionAnswers.RemoveRange(questionAnswers);
                 await _context.SaveChangesAsync();
 
@@ -164,7 +177,7 @@ namespace Web.Areas.Dashboard.Controllers
                 var qt = await _context.Questions.SingleOrDefaultAsync(x => x.Id == question.Id);
                 qt.IsDeleted = true;
                 _context.SaveChangesAsync();
-                return RedirectToAction("Index");
+                return RedirectToAction(nameof(Index));
             }
             catch (Exception)
             {

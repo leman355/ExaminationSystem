@@ -6,7 +6,7 @@ using Web.Models;
 
 namespace Web.Areas.Dashboard.Controllers
 {
-    [Area("Dashboard")]
+    [Area(nameof(Dashboard))]
     public class AnswerController : Controller
     {
         private readonly AppDbContext _context;
@@ -54,7 +54,7 @@ namespace Web.Areas.Dashboard.Controllers
         {
             _context.Answers.Update(answer);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
         [HttpGet]
         public async Task<IActionResult> Delete(int id)
@@ -67,7 +67,7 @@ namespace Web.Areas.Dashboard.Controllers
         {
             _context.Answers.RemoveRange(answer);
             await _context.SaveChangesAsync();
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
     }
 }

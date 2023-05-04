@@ -5,7 +5,7 @@ using Web.Models;
 
 namespace Web.Areas.Dashboard.Controllers
 {
-    [Area("Dashboard")]
+    [Area(nameof(Dashboard))]
     public class AuthController : Controller
     {
         private readonly UserManager<User> _userManager;
@@ -61,7 +61,7 @@ namespace Web.Areas.Dashboard.Controllers
             IdentityResult result = await _userManager.CreateAsync(newUser, registerDTO.Password);
             if (result.Succeeded)
             {
-                return RedirectToAction("Login");
+                return RedirectToAction(nameof(Login));
             }
 
             return View();

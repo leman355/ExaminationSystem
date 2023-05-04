@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "niwu9n90h9ftoOq0LmPHs1WtL3XN8Mv9dvVsNea6CDw=",
+  "Hash": "5LkqMEVgdX2HpJ5Ya73c6PhOwUel4HdgtrOiAcRyb90=",
   "Source": "Web",
   "BasePath": "_content/Web",
   "Mode": "Default",
@@ -32213,6 +32213,57 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\admin\\vendor\\jquery-easing\\jquery.easing.min.js"
+    },
+    {
+      "Identity": "F:\\ExaminationSystem\\Web\\wwwroot\\uploads\\c69c7483-7540-4ef7-bfc9-6eb59828ab627. Бабочка.jpg",
+      "SourceId": "Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\ExaminationSystem\\Web\\wwwroot\\",
+      "BasePath": "_content/Web",
+      "RelativePath": "uploads/c69c7483-7540-4ef7-bfc9-6eb59828ab627. Бабочка.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\c69c7483-7540-4ef7-bfc9-6eb59828ab627. Бабочка.jpg"
+    },
+    {
+      "Identity": "F:\\ExaminationSystem\\Web\\wwwroot\\uploads\\ca4a7da8-f678-45ee-80c8-4d18e50ec71d9. Пустыня.jpg",
+      "SourceId": "Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\ExaminationSystem\\Web\\wwwroot\\",
+      "BasePath": "_content/Web",
+      "RelativePath": "uploads/ca4a7da8-f678-45ee-80c8-4d18e50ec71d9. Пустыня.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\ca4a7da8-f678-45ee-80c8-4d18e50ec71d9. Пустыня.jpg"
+    },
+    {
+      "Identity": "F:\\ExaminationSystem\\Web\\wwwroot\\uploads\\caa167df-e99e-4861-aca3-f0c54ce4420a7. Бабочка.jpg",
+      "SourceId": "Web",
+      "SourceType": "Discovered",
+      "ContentRoot": "F:\\ExaminationSystem\\Web\\wwwroot\\",
+      "BasePath": "_content/Web",
+      "RelativePath": "uploads/caa167df-e99e-4861-aca3-f0c54ce4420a7. Бабочка.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\uploads\\caa167df-e99e-4861-aca3-f0c54ce4420a7. Бабочка.jpg"
     }
   ]
 }

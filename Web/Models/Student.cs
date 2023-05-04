@@ -9,7 +9,7 @@ namespace Web.Models
         public string Surname { get; set; }
         public string? Contact { get; set; }
         public string? Picture { get; set; }
-        public DateTime StudentCreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
         public DateTime? UpdatedDate { get; set; }
         public bool IsDeleted { get; set; }
         public string? UserId { get; set; }

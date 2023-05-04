@@ -12,7 +12,7 @@
             {
                 if (Model.QuestionAnswers.Any(qa => qa.QuestionId == Model.Questions.Id && qa.AnswerId == ans.Id))
                 {
-                    <div class="input-group">
+                    <div class="input-group my-2">
                         <input type="text" class="form-control" value="@ans.Option" name="Option" placeholder="Answer option" />
                         <span class="input-group-text">
                             <input id="stat-@ans.Id" type="checkbox" name="Status_@(ansnumber)" value="true" @(ans.Status ? "checked" : null) />
@@ -24,7 +24,7 @@
             }
         </div>
 
-        <button class="btn btn-outline-dark" id="add-input-button" type="button">Add input</button>
+        <button class="btn btn-outline-dark my-3" id="add-input-button" type="button">Add input</button>
         <p>Input count: <span id="input-count">@(ansnumber)</span></p>
 
         <br />
@@ -51,7 +51,7 @@
         inputCount++;
 
         const newInputGroup = document.createElement('div');
-        newInputGroup.className = 'input-group';
+        newInputGroup.className = 'input-group my-2';
 
         const newInput = document.createElement('input');
         newInput.type = 'text';
