@@ -41,8 +41,15 @@ namespace Web.Areas.Dashboard.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
+            var examCategory = _context.ExamCategories.Where(x => x.IsDeleted == false).ToList();
+
+            if (examCategory.Count == 0)
+            {
+                return RedirectToAction("Create", "ExamCategory");
+            }
+
             ViewData["ExamCategories"] = await _context.ExamCategories.ToListAsync();
-            //ViewData["Answ"] = await _context.Answers.ToListAsync();
+            //ViewData["Answ"] = await _context.Answers.ToListAsync();          
             return View();
         }
 
@@ -51,6 +58,7 @@ namespace Web.Areas.Dashboard.Controllers
         {
             try
             {
+            
                 question.IsDeleted = IsDeleted;
                 question.ExamCategoryId = examCategoryId;
                 await _context.Questions.AddAsync(question);
@@ -89,6 +97,12 @@ namespace Web.Areas.Dashboard.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
+            var examCategory = _context.ExamCategories.Where(x => x.IsDeleted == false).ToList();
+
+            if (examCategory.Count == 0)
+            {
+                return RedirectToAction("Create", "ExamCategory");
+            }
             try
             {
                 var question = await _context.Questions.Include(x => x.ExamCategory).FirstOrDefaultAsync(x => x.Id == id);

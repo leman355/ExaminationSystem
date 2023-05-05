@@ -41,6 +41,13 @@ namespace Web.Areas.Dashboard.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            var group = _context.Groups.Where(x => x.IsDeleted == false).ToList();
+
+            if (group.Count == 0)
+            {
+                return RedirectToAction("Create", "Group");
+            }
+
             //ViewData["StudentUser"] = _context.Users.Where(x => x.Id == student.UserId);
             ViewData["Groups"] = _context.Groups.Where(x => x.IsDeleted == false).ToList();
             return View();
@@ -68,6 +75,13 @@ namespace Web.Areas.Dashboard.Controllers
         [HttpGet]
         public async Task<IActionResult> Edit(Student studentusr, int id)
         {
+            var gr = _context.Groups.Where(x => x.IsDeleted == false).ToList();
+
+            if (gr.Count == 0)
+            {
+                return RedirectToAction("Create", "Group");
+            }
+
             ViewData["StudentUser"] = _context.Users.Where(x => x.Id == studentusr.UserId);
             //var student = _context.Students.SingleOrDefault(x => x.Id.ToString() == id);
             //return View(student);
