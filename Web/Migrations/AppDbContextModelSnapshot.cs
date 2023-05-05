@@ -227,6 +227,9 @@ namespace Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("IsDeleted")
+                        .HasColumnType("bit");
+
                     b.HasKey("Id");
 
                     b.ToTable("ExamCategories");
@@ -294,10 +297,15 @@ namespace Web.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("ExamCategoryId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ExamCategoryId");
 
                     b.ToTable("Questions");
                 });
@@ -549,6 +557,17 @@ namespace Web.Migrations
                     b.Navigation("Exam");
 
                     b.Navigation("User");
+                });
+
+            modelBuilder.Entity("Web.Models.Question", b =>
+                {
+                    b.HasOne("Web.Models.ExamCategory", "ExamCategory")
+                        .WithMany()
+                        .HasForeignKey("ExamCategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ExamCategory");
                 });
 
             modelBuilder.Entity("Web.Models.QuestionAnswer", b =>

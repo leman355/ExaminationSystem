@@ -27,10 +27,11 @@ namespace Web.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(ExamCategory examCategory)
+        public async Task<IActionResult> Create(ExamCategory examCategory, bool IsDeleted)
         {
             try
             {
+                examCategory.IsDeleted = IsDeleted;
                 _context.ExamCategories.Add(examCategory);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -49,10 +50,11 @@ namespace Web.Areas.Dashboard.Controllers
             return View(edit);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(ExamCategory examCategory)
+        public async Task<IActionResult> Edit(ExamCategory examCategory, bool IsDeleted)
         {
             try
             {
+                examCategory.IsDeleted = IsDeleted;
                 _context.ExamCategories.Update(examCategory);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
@@ -72,9 +74,17 @@ namespace Web.Areas.Dashboard.Controllers
         [HttpPost]
         public async Task<IActionResult> Delete(ExamCategory examCategory)
         {
-            _context.ExamCategories.RemoveRange(examCategory);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                var examCat = await _context.ExamCategories.SingleOrDefaultAsync(x => x.Id == examCategory.Id);
+                examCat.IsDeleted = true;
+                _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
     }
 }

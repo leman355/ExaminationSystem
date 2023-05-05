@@ -13,17 +13,17 @@
         <input id="deleted" value="true" @(Model.Students.IsDeleted ? "checked" : null) type="checkbox" name="IsDeleted" />
     </span>
     <select name="groupId" class="form-control mb-4">
-    @foreach (var group in Model.Groups)
-    {
+        @foreach (var group in Model.Groups)
+        {
             <option @(Model.StudentGroups.Any(x => x.GroupId == group.Id) == true ? "selected" : null) value="@group.Id">@group.GroupName</option>
             @*<option value="@group.Id">@group.GroupName</option>*@
-    }
+        }
     </select>
     @*    <select name="userId" class="form-control mb-4">
-        @foreach (var group in ViewData["Groups"] as IEnumerable<Group>)
-        {
-            <option value="@group.Id">@group.GroupName</option>
-        }
+    @foreach (var group in ViewData["Groups"] as IEnumerable<Group>)
+    {
+    <option value="@group.Id">@group.GroupName</option>
+    }
     </select>*@
     <input type="submit" class="btn btn-outline-primary mt-2" value="update" />
 </form>

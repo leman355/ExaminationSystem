@@ -1,14 +1,13 @@
 ﻿<form method="post" enctype="multipart/form-data" class="col-6 m-auto my-3">
 
 
-    <div class="form-group">
-        <select name="examCategoryId" class="form-control mb-4">
-            @foreach (var category in ViewBag.ExamCategories as IEnumerable<ExamCategory>)
-            {
-                <option value="@category.Id">@category.CategoryName</option>
-            }
-        </select>
-    </div>
+    <select name="examCategoryId" class="form-control mb-4">
+        @foreach (var examCategory in ViewData["ExamCategories"] as IEnumerable<ExamCategory>)
+        {
+            <option value="@examCategory.Id">@examCategory.CategoryName</option>
+        }
+    </select>
+
 
 
 

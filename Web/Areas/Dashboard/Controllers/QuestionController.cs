@@ -22,7 +22,10 @@ namespace Web.Areas.Dashboard.Controllers
         public IActionResult Index()
         {
 
-            var questions = _context.Questions.Include(x => x.ExamCategory).ToList();
+           var questions = _context.Questions.Include(x => x.ExamCategory).ToList();
+
+
+           // var questions = _context.Questions.ToList();
             var questionAnswers = _context.QuestionAnswers.Include(x => x.Answer).ToList();
             var answer = _context.Answers.ToList();
 
@@ -38,8 +41,7 @@ namespace Web.Areas.Dashboard.Controllers
         [HttpGet]
         public async Task<IActionResult> Create()
         {
-            var examCategories = _context.ExamCategories.ToList();
-            ViewBag.ExamCategories = new SelectList(examCategories, "Id", "Name");
+            ViewData["ExamCategories"] = await _context.ExamCategories.ToListAsync();
             //ViewData["Answ"] = await _context.Answers.ToListAsync();
             return View();
         }
@@ -50,10 +52,10 @@ namespace Web.Areas.Dashboard.Controllers
             try
             {
                 question.IsDeleted = IsDeleted;
+                question.ExamCategoryId = examCategoryId;
                 await _context.Questions.AddAsync(question);
                 await _context.SaveChangesAsync();
 
-                var examCat = _context.ExamCategories.FirstOrDefault(x => x.Id == examCategoryId);
                 for (int i = 0; i < Option.Length; i++)
                 {
                     if (Option[i] != null)
@@ -71,7 +73,6 @@ namespace Web.Areas.Dashboard.Controllers
                         {
                             QuestionId = question.Id,
                             AnswerId = answer.Id,
-                            ExamCategoryId= examCategoryId,
                         };
                         await _context.QuestionAnswers.AddAsync(questionAnswer);
                         await _context.SaveChangesAsync();
@@ -90,15 +91,17 @@ namespace Web.Areas.Dashboard.Controllers
         {
             try
             {
-                var question = await _context.Questions.FirstOrDefaultAsync(x => x.Id == id);
+                var question = await _context.Questions.Include(x => x.ExamCategory).FirstOrDefaultAsync(x => x.Id == id);
                 var answers = _context.Answers.ToList();
                 var questionAnswers = _context.QuestionAnswers.Where(x => x.QuestionId == question.Id).ToList();
+                var examCategories = _context.ExamCategories.ToList();
 
                 QuestionEditVM editVM = new()
                 {
                     Questions = question,
                     Answers = answers,
                     QuestionAnswers = questionAnswers,
+                    ExamCategories = examCategories,
                 };
 
                 return View(editVM);
@@ -110,11 +113,12 @@ namespace Web.Areas.Dashboard.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Edit(Question question, string[] Option, bool IsDeleted)
+        public async Task<IActionResult> Edit(Question question, string[] Option, bool IsDeleted, int examCategoryId)
         {
             try
             {
                 question.IsDeleted = IsDeleted;
+                question.ExamCategoryId = examCategoryId;
                 _context.Questions.Update(question);
                 await _context.SaveChangesAsync();
 

@@ -5,6 +5,14 @@
 
 <div class="card shadow mb-4 py-5">
     <form method="post" enctype="multipart/form-data" class="col-6 m-auto my-3">
+
+        <select name="examCategoryId" class="form-control mb-4">
+            @foreach (var examCategory in Model.ExamCategories)
+            {
+                <option value="@examCategory.Id" @(examCategory.Id == Model.Questions.ExamCategoryId ? "selected" : "")>@examCategory.CategoryName</option>
+            }
+        </select>
+        
         <input type="text" class="form-control my-3" value="@Model.Questions.Content" name="Content" placeholder="Content" />
 
         <div id="input-container">
